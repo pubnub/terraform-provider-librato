@@ -180,6 +180,9 @@ func resourceLibratoSpaceChartCreate(d *schema.ResourceData, meta interface{}) e
 			if v, ok := streamData["source"].(string); ok && v != "" {
 				stream.Source = librato.String(v)
 			}
+			if v, ok := streamData["name"].(string); ok && v != "" {
+				stream.Name = librato.String(v)
+			}
 			if v, ok := streamData["composite"].(string); ok && v != "" {
 				stream.Composite = librato.String(v)
 			}
@@ -304,6 +307,9 @@ func resourceLibratoSpaceChartStreamsGather(d *schema.ResourceData, streams []li
 		if s.Source != nil {
 			stream["source"] = *s.Source
 		}
+		if s.Name != nil {
+			stream["name"] = *s.Name
+		}
 		if s.Composite != nil {
 			stream["composite"] = *s.Composite
 		}
@@ -386,6 +392,9 @@ func resourceLibratoSpaceChartUpdate(d *schema.ResourceData, meta interface{}) e
 			}
 			if v, ok := streamData["source"].(string); ok && v != "" {
 				stream.Source = librato.String(v)
+			}
+			if v, ok := streamData["name"].(string); ok && v != "" {
+				stream.Name = librato.String(v)
 			}
 			if v, ok := streamData["composite"].(string); ok && v != "" {
 				stream.Composite = librato.String(v)
